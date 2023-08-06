@@ -14,7 +14,7 @@ const Navbar = () => {
         <Link href="/menu">Menu</Link>
         <Link href="/contact">Contact</Link>
       </div>
-      <div className="text-xl md:font-bold flex-1 text-center">
+      <div className="text-xl md:font-bold flex-1 md:text-center">
         <Link href="/">yumrunner</Link>
       </div>
       {/* MOBILE VIEW */}

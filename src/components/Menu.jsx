@@ -16,7 +16,7 @@ const Menu = () => {
     { id: 4, title: "contact", url: "/contact" },
   ];
   return (
-    <div>
+    <div className="">
       {open ? (
         <p onClick={() => setOpen(false)}>close</p>
       ) : (
