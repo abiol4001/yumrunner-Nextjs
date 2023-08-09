@@ -32,9 +32,9 @@ const Price = ({price, id, options}) => {
         <div className="flex justify-between w-full p-3 ring-1 ring-red-500">
           <span>Quantity</span>
           <div className="flex gap-4">
-            <button>{"<"}</button>
+            <button onClick={() => setQuantity(prev => prev > 1 ? prev -1 : 1)}>{"<"}</button>
             <span>{quantity}</span>
-            <button>{">"}</button>
+            <button onClick={() => setQuantity(prev => prev < 9 ? prev+1 : 9)}>{">"}</button>
           </div>
         </div>
         <button className="uppercase p-3 w-56 bg-red-500 text-white">
