@@ -2,14 +2,22 @@
 import { signIn, useSession } from 'next-auth/react';
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import React from 'react'
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
   const {data, status} = useSession()
+  const router = useRouter()
   console.log("data " + data)
   console.log("status " + status)
+  if (status === "loading") {
+    return <p>loading...</p>
+  }
+  if (status === "authenticated") {
+    router.push("/")
+  }
   return (
     <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] p-4 flex items-center justify-center">
       <div className="h-full shadow-2xl rounded-md flex flex-col md:flex-row md:h-[70%] md:w-full lg:w-[60%] 2xl:w-1/2">

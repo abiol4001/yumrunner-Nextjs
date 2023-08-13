@@ -3,6 +3,7 @@ import Menu from './Menu'
 import Link from 'next/link'
 import CartIcon from './CartIcon'
 import { BsTelephoneFill } from 'react-icons/bs'
+import UserLinks from './UserLinks'
 
 const Navbar = () => {
     const user = false
@@ -23,15 +24,11 @@ const Navbar = () => {
       </div>
       {/* RIGHT LINKS */}
       <div className="hidden md:flex gap-4 items-center flex-1 justify-end">
-        <div className="md:absolute top-3 right-2 lg:static flex items-center gap-2 cursor-pointer bg-red-400 lg:bg-red-500 px-1 rounded-md text-white">
+        <div className="md:absolute top-3 right-2 2xl:static flex items-center gap-2 cursor-pointer bg-red-400 lg:bg-red-500 px-1 rounded-md text-white">
           <BsTelephoneFill />
           <span>123 456 7890</span>
         </div>
-        {user ? (
-          <Link href="/orders">Orders</Link>
-        ) : (
-          <Link href="/login">Login</Link>
-        )}
+        <UserLinks />
         <CartIcon />
       </div>
     </div>

@@ -13,6 +13,7 @@ const getFeaturedProducts = async () => {
 
   return res.json();
 };
+
 const Featured = async () => {
 
   const featuredProducts = await getFeaturedProducts();
