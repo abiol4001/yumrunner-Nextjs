@@ -4,6 +4,8 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { BiSolidPencil } from "react-icons/bi"
 import React from "react"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const OrdersPage = () => {
 
@@ -52,6 +54,7 @@ const OrdersPage = () => {
     const status = input.value
 
     mutation.mutate({id, status})
+    toast.success("The order status has been changed")
   };
 
   return (
@@ -68,7 +71,7 @@ const OrdersPage = () => {
         </thead>
         <tbody>
           {data.map((item) => (
-            <tr key={item.id} className="text-sm md:text-base even:bg-gray-100">
+            <tr key={item.id} className={`${item.status.toLowerCase() !== "delivered" && "bg-red-50"}`}>
               <td className="hidden md:block py-6 px-1">{item.id}</td>
               <td className="py-6 px-1">
                 {item.createdAt.toString().slice(0, 10)}
