@@ -1,11 +1,15 @@
 "use client"
 import { useCartStore } from '@/utils/store';
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const page = () => {
-
   const {products, totalPrice, totalItems, removeFromCart} = useCartStore()
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
+
   return (
     <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col lg:flex-row  text-red-500">
       <div className="h-1/2 p-4 flex flex-col justify-center gap-4 overflow-y-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:p-20 xl:p-40">
@@ -16,8 +20,8 @@ const page = () => {
           >
             <Image src={product.img} alt="" width={100} height={100} />
             <div>
-              <h1 className="font-bold uppercase text-xl">{product.title}</h1>
-              <span>option</span>
+              <h1 className="font-bold uppercase text-xl">{product.title} {product.quantity}</h1>
+              <span>{product.optionTitle}</span>
             </div>
             <h2 className="font-bold">${product.price}</h2>
             <span

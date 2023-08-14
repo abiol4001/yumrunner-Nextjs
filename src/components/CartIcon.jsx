@@ -1,12 +1,16 @@
 "use client"
 import { useCartStore } from '@/utils/store'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {BsFillCartFill} from "react-icons/bs"
 
 const CartIcon = () => {
   const {totalItems} = useCartStore()
-  console.log(typeof(totalItems))
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
+
   return (
     <Link href="/cart">
       <div className="flex items-center gap-1">
