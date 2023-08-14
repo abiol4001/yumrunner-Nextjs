@@ -39,11 +39,7 @@ const ProductPage = async ({params}) => {
         </h1>
         <p>{singleProduct.desc}</p>
 
-        <Price
-          price={singleProduct.price}
-          id={singleProduct.id}
-          options={singleProduct.options}
-        />
+        <Price product={singleProduct} />
       </div>
     </div>
   );
