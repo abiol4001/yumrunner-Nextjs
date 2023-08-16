@@ -3,7 +3,8 @@ import Link from "next/link";
 import React from "react";
 
 const getProductsByCategory = async (category) => {
-  const res = await fetch(`http://localhost:3000/api/products?cat=${category}`,
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/products?cat=${category}`,
     {
       cache: "no-store",
     }

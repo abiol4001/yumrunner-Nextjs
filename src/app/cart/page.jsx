@@ -19,16 +19,16 @@ const page = () => {
       router.push("/login")
     } else {
       try {
-        const res = await fetch("http://localhost:3000/api/orders", {
+        const res = await fetch(`${process.env.BASE_URL}/api/orders`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             price: totalPrice,
             products,
             status: "Not Paid",
-            userEmail: session.user.email
-          })
-        })
+            userEmail: session.user.email,
+          }),
+        });
         const data = await res.json()
         router.push(`/pay/${data.id}`)
       } catch (error) {

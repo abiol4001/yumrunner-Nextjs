@@ -2,8 +2,10 @@ import { prisma } from "@/utils/connect"
 import { NextResponse } from "next/server"
 
 
-export const PUT = async ({params}) => {
-    const {intentId} = params
+export const PUT = async ({ params }) => {
+    const { intentId } = params
+
+    console.log(intentId)
 
     try {
         

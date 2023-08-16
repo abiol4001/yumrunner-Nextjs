@@ -2,6 +2,7 @@
 
 import { LinkAuthenticationElement, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
+import AddressForm from "./AddressForm";
 
 const CheckoutForm = () => {
 
@@ -87,6 +88,7 @@ const CheckoutForm = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <PaymentElement id="payment-element" options={paymentElementOptions} />
+            <AddressForm />
         <button disabled={isLoading || !stripe || !elements} id="submit">
           <span id="button-text">
             {isLoading ? (
