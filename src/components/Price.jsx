@@ -16,6 +16,10 @@ const Price = ({ product }) => {
 
   const { addToCart } = useCartStore();
 
+  useEffect(() => {
+    useCartStore.persist.rehydrate()
+  },[])
+
   const handleAddToCart = () => {
     addToCart({
       id,

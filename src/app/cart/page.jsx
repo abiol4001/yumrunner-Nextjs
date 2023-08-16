@@ -1,14 +1,41 @@
 "use client"
 import { useCartStore } from '@/utils/store';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 
 const page = () => {
   const {products, totalPrice, totalItems, removeFromCart} = useCartStore()
+  const {data:session} = useSession()
+  const router = useRouter()
 
   useEffect(() => {
     useCartStore.persist.rehydrate();
   }, []);
+
+  const handleCheckout = async () => {
+    if(!session) {
+      router.push("/login")
+    } else {
+      try {
+        const res = await fetch("http://localhost:3000/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            price: totalPrice,
+            products,
+            status: "Not Paid",
+            userEmail: session.user.email
+          })
+        })
+        const data = await res.json()
+        router.push(`/pay/${data.id}`)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 
   return (
     <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col lg:flex-row  text-red-500">
@@ -52,7 +79,7 @@ const page = () => {
           <span className="">TOTAL(INCL. VAT)</span>
           <span className="text-green-600">${totalPrice}</span>
         </div>
-        <button className="bg-red-500 text-white rounded-md w-1/2 self-end p-4">
+        <button className="bg-red-500 text-white rounded-md w-1/2 self-end p-4" onClick={handleCheckout}>
           Checkout
         </button>
       </div>
