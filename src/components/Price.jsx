@@ -36,7 +36,7 @@ const Price = ({ product }) => {
     if (options.length) {
       setTotal(quantity * (Number(price) + options[selected].additionalPrice));
     }
-  }, [quantity, selected, product]);
+  }, [quantity, selected, product, options, price]);
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold">${Number(total).toFixed(2)}</h2>
